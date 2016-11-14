@@ -154,14 +154,11 @@ _package-headers() {
     cp -a include/${i} "${pkgdir}/usr/lib/modules/${_kernver}/build/include/"
   done
 
-  [[ $CARCH == "armv6h" ]] && MACH="mach-bcm2708"
-  [[ $CARCH == "armv7h" ]] && MACH="mach-bcm2709"
-
   # copy arch includes for external modules
   mkdir -p ${pkgdir}/usr/lib/modules/${_kernver}/build/arch/$KARCH
   cp -a arch/$KARCH/include ${pkgdir}/usr/lib/modules/${_kernver}/build/arch/$KARCH/
-  mkdir -p ${pkgdir}/usr/lib/modules/${_kernver}/build/arch/$KARCH/$MACH
-  cp -a arch/$KARCH/$MACH/include ${pkgdir}/usr/lib/modules/${_kernver}/build/arch/$KARCH/$MACH/
+  mkdir -p ${pkgdir}/usr/lib/modules/${_kernver}/build/arch/$KARCH/mach-bcm
+  cp -a arch/$KARCH/mach-bcm/include ${pkgdir}/usr/lib/modules/${_kernver}/build/arch/$KARCH/mach-bcm/
 
   # copy files necessary for later builds, like nvidia and vmware
   cp Module.symvers "${pkgdir}/usr/lib/modules/${_kernver}/build"
