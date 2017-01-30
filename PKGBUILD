@@ -7,12 +7,12 @@
 buildarch=20
 
 pkgbase=linux-raspberrypi
-_commit=d9f810a9aa64d11b51ec7d252ec0b80be2031bd4
+_commit=c9399626801e35bc67b65a18f296f5702db7554b
 _srcname=rpi-linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi"
 _defconfigname="rpi2_arch_defconfig"
-pkgver=4.8.7
+pkgver=4.9.6
 pkgrel=1
 arch=('armv7h')
 url="http://www.kernel.org/"
@@ -24,10 +24,10 @@ source=("https://github.com/davet321/rpi-linux/archive/${_commit}.tar.gz"
         'https://archlinuxarm.org/builder/src/brcmfmac43430-sdio.txt'
         'config.txt'
         'cmdline.txt')
-md5sums=('a4215e864201dae5546afdaabed4d80b'
+md5sums=('f2f7416673ebc42bcaf5a61bef0f52d0'
          '4a410ab9a1eefe82e158d36df02b3589'
          '8c3cb6d8f0609b43f09d083b4006ec5a'
-         'beb962c756990a507464bc61d753fdbd'
+         '6e595c454ec00ad2a4c764dd620742b9'
          '958dd6fae5897afa2f9b388e2b39b61b')
 
 prepare() {
