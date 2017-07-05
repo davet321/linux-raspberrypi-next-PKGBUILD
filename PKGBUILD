@@ -5,37 +5,36 @@
 buildarch=20
 
 pkgbase=linux-raspberrypi
-_commit=be2540e540f5442d7b372208787fb64100af0c54
-_srcname=linux-${_commit}
+_commit=65223db1eaae4cbdbf87ef973e56ecff9b23e88a
+_srcname=rpi-linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi"
-pkgver=4.9.35
+_defconfigname="rpi2_arch_defconfig"
+pkgver=4.12.0
 pkgrel=1
 arch=('armv6h' 'armv7h')
 url="http://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git')
 options=('!strip')
-source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
+source=("https://github.com/davet321/rpi-linux/archive/${_commit}.tar.gz"
         'https://archlinuxarm.org/builder/src/brcmfmac43430-sdio.bin' 'https://archlinuxarm.org/builder/src/brcmfmac43430-sdio.txt'
         'config.txt'
         'cmdline.txt'
-        'config'
         'linux.preset'
         '99-linux.hook')
-md5sums=('29a50618e86a62fa9788bc0d9dd1f43b'
+md5sums=('abd1019c552fc35f0b516705fec465ed'
          '4a410ab9a1eefe82e158d36df02b3589'
          '8c3cb6d8f0609b43f09d083b4006ec5a'
-         '7c6b37a1353caccf6d3786bb4161c218'
+         '05365e5ccea51394affb4a788d9b55a8'
          '60bc3624123c183305677097bcd56212'
-         '2c410b9b0e8b7c77b8a69dfe4dd38618'
          '552c43bf6c0225bc213b31ee942b7000'
          '982f9184dfcfbe52110795cf73674334')
 
 prepare() {
   cd "${srcdir}/${_srcname}"
 
-  cat "${srcdir}/config" > ./.config
+  cat "${srcdir}/${_srcname}/arch/arm/configs/${_defconfigname}" > ./.config
 
   # add pkgrel to extraversion
   sed -ri "s|^(EXTRAVERSION =)(.*)|\1 \2-${pkgrel}|" Makefile
